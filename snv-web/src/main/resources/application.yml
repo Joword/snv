@@ -1,0 +1,52 @@
+server:
+  port: 9530
+  servlet:
+    session:
+      timeout: 30m
+    encoding:
+      charset: UTF-8
+  tomcat:
+    uri-encoding: UTF-8
+    threads:
+      max: 700
+spring:
+  application:
+    name: snv-web
+    prefix: ""
+  data:
+    mongodb:
+      host: xxx.xxx.xxx.xxx
+      port: 27017
+      username: snv
+      password: snv-joword
+      uri: ........
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    username: snv
+    password: snv#joword
+  web:
+    resources:
+      static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,classpath:/static/**/
+  jmx:
+    enabled: false
+  mvc:
+    view:
+      suffix: .html
+  output:
+    ansi:
+      enabled: always
+  redis:
+    host: xxx.xxx.xxx.xxx
+    password: gemini
+    timeout: 100
+    lettuce:
+      pool:
+        max-active: 500
+        max-idle: 60
+        min-idle: 10
+        max-wait: -1
+mybatis-plus:
+  configuration:
+    call-setters-on-nulls: true
+  mapper-locations: classpath*:mapper/*.xml
