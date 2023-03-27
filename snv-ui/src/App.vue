@@ -1,15 +1,16 @@
 <template>
-	<img alt="Vue logo" src="./assets/logo.png" />
-	<HelloWorld msg="Hello Vue 3.0 + Vite" />
+	<div id="app">
+			
+	</div>
 </template>
 
-<script>
-	import HelloWorld from './components/HelloWorld.vue'
-
-	export default {
-		name: 'App',
-		components: {
-			HelloWorld
-		}
-	}
-</script>
+<style>
+    #app {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+        color: #2c3e50;
+        margin-top: 60px;
+    }
+</style>
