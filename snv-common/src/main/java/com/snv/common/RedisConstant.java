@@ -4,7 +4,7 @@ package com.snv.common;
  * @author Joword
  * @date: 2023/3/9 18:08
  * @version: 1.0
- * @description: redis 持久化数据
+ * @description: redis persistence
  */
 public interface RedisConstant {
 

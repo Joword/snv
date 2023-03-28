@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.joword.snv.mapper.SampleDataMapper">
+    <sql id="resultInfo">`id`
+    ,slideId,pooling,sampleId,area,platform,barcode,runId,lane,`date`,`month`,chip,fetalType,enrichment,hospital,brand,gestationalAge,gestationalWeek,tag,`status`,create_time,update_time</sql>
+    <sql id="sampleQcInfo">`id`
+    ,sample_info.slideId,sample_info.pooling,sampleId,area,platform,barcode,runId,lane,`date`,chip,fetalType,enrichment,hospital,brand,gestationalAge,gestationalWeek,tag,gender,ur,gc,rawData,maprate,duprate,fetalFraction,fetalNew</sql>
+    <sql id="sampleAreaTimeInfo">`id`
+    ,slideId,area,`date`,`month`,tag</sql>
+    <sql id="sampleChipInfo">`id`
+    ,slideId,chip,tag</sql>
+
+    <select id="selectAllSampleInfo" resultType="com.joword.snv.entity.SampleInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM sample_info
+    </select>
+    <select id="selectAreaSample" resultType="com.joword.snv.entity.SampleInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM sample_info
+        WHERE `area`=#{ai.area}
+    </select>
+    <select id="selectDateSample" resultType="com.joword.snv.entity.SampleInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM sample_info
+        WHERE `date`=#{d}
+    </select>
+    <select id="selectMonthSample" resultType="com.joword.snv.entity.SampleInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM sample_info
+        WHERE `month` = #{m.month}
+    </select>
+    <select id="selectFetalTypeSample" resultType="com.joword.snv.entity.SampleInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM sample_info
+        WHERE fetalType=#{f.fetalType}
+    </select>
+    <select id="selectEnrichmentSample" resultType="com.joword.snv.entity.SampleInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM sample_info
+        WHERE enrichment=#{e.enrichment}
+    </select>
+    <select id="selectHospitalSample" resultType="com.joword.snv.entity.SampleInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM sample_info
+        WHERE hospital=#{h.hospital}
+    </select>
+    <select id="selectBrandSample" resultType="com.joword.snv.entity.SampleInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM sample_info
+        WHERE brand=#{b.brand}
+    </select>
+    <select id="selectGestationalAgeSample" resultType="com.joword.snv.entity.SampleInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM sample_info
+        WHERE gestationalAge=#{g.gestationalAge}
+    </select>
+    <select id="selectGestationalWeekSample" resultType="com.joword.snv.entity.SampleInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM sample_info
+        WHERE gestationWeek=#{w.gestationWeek}
+    </select>
+    <select id="selectTagsSample" resultType="com.joword.snv.entity.SampleInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM sample_info
+        WHERE tag=#{t.tag}
+    </select>
+    <select id="selectSlideSample" resultType="com.joword.snv.entity.SampleInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM sample_info
+        WHERE slideId=#{s}
+    </select>
+    <select id="selectPoolingSample" resultType="com.joword.snv.entity.SampleInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM sample_info
+        WHERE pooling=#{p.pooling}
+    </select>
+    <select id="selectSampleIdSample" resultType="com.joword.snv.entity.SampleInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM sample_info
+        WHERE sampleId=#{s.sampleId}
+    </select>
+    <select id="selectPlatformSample" resultType="com.joword.snv.entity.SampleInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM sample_info
+        WHERE platform=#{p.platform}
+    </select>
+    <select id="selectBarcodeSample" resultType="com.joword.snv.entity.SampleInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM sample_info
+        WHERE barcode=#{b.barcode}
+    </select>
+    <select id="selectRunIdSample" resultType="com.joword.snv.entity.SampleInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM sample_info
+        WHERE runId=#{r.runId}
+    </select>
+    <select id="selectLaneSample" resultType="com.joword.snv.entity.SampleInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM sample_info
+        WHERE lane=#{l.lane}
+    </select>
+    <select id="selectChipSample" resultType="com.joword.snv.entity.SampleInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM sample_info
+        WHERE chip=#{c.chip}
+    </select>
+    <select id="selectStatusSample" resultType="com.joword.snv.entity.SampleInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM sample_info
+        WHERE `status`=#{s}
+    </select>
+    <select id="selectSampleNumber" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM sample_info
+        WHERE slideId LIKE CONCAT("%", #{n}, "%")
+    </select>
+    <select id="fetchOriginalDataTime" resultType="java.lang.String">
+        SELECT DISTINCT date
+        FROM sample_info
+        ORDER BY date ASC
+    </select>
+    <select id="selectZone" resultType="com.joword.snv.entity.SampleInfo">
+        SELECT
+        <include refid="resultInfo"></include>
+        FROM sample_info
+        WHERE tag = #{t}
+    </select>
+    <select id="selectSampleLeftJoinQc" resultType="com.joword.snv.entity.SampleQualityControlInfo">
+        SELECT
+        <include refid="sampleQcInfo"/>
+        FROM sample_info
+        LEFT JOIN quality_control_info
+        ON sample_info.slideId = quality_control_info.slideId
+        WHERE tag=#{t} AND area=#{a}
+    </select>
+    <select id="selectSampleBarcode" resultType="com.joword.snv.entity.SampleQualityControlInfo">
+        SELECT
+        <include refid="sampleQcInfo"/>
+        FROM sample_info
+        LEFT JOIN quality_control_info
+        ON sample_info.slideId = quality_control_info.slideId
+        WHERE barcode=#{b} AND area=#{a}
+    </select>
+    <select id="selectSampleArea" resultType="com.joword.snv.entity.SampleQualityControlInfo">
+        SELECT
+        <include refid="sampleQcInfo"/>
+        FROM sample_info
+        LEFT JOIN quality_control_info
+        ON sample_info.slideId = quality_control_info.slideId
+        WHERE area = #{a}
+    </select>
+    <select id="selectSampleAreaTime" resultType="com.joword.snv.entity.SampleAreaTimeInfo">
+        SELECT
+        <include refid="sampleAreaTimeInfo"/>
+        FROM sample_info
+    </select>
+    <select id="selectSampleChip" resultType="com.joword.snv.entity.SampleChipEntity">
+        SELECT
+        <include refid="sampleChipInfo"/>
+        FROM sample_info
+    </select>
+</mapper>

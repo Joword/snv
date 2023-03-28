@@ -68,6 +68,7 @@ public class UserInfoController {
     @PostMapping("/checkLogin")
     public ResultData checkLogin(@CookieValue(name = "loginToken", required = false) String loginToken, HttpServletResponse response) {
 
+
         return ResultData.successResult("done");
     }
 

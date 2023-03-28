@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.joword.snv.mapper.DetectionResultMapper">
+    <sql id="resultInfo">slideId
+    , pooling,`Test(chr21)`,`Test(chr18)`,`Test(chr13)`,note1,note2,cnv,autom,`Z-score_check(chr21)`,`Z-score_check(chr18)`,`Z-score_check(chr13)`,`status`,create_time,update_time</sql>
+    <select id="selectSlideDetection" resultType="com.joword.snv.entity.DetectionInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM detection_result
+        WHERE slideId=#{s.slideId}
+    </select>
+    <select id="selectPoolingDetection" resultType="com.joword.snv.entity.DetectionInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM detection_result
+        WHERE pooling=#{p.pooling}
+    </select>
+    <select id="selectTestChr21Detection" resultType="com.joword.snv.entity.DetectionInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM detection_result
+        WHERE `Test(chr21)`=#{t.testChr21}
+    </select>
+    <select id="selectTestChr18Detection" resultType="com.joword.snv.entity.DetectionInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM detection_result
+        WHERE `Test(chr18)`=#{tc.testChr18}
+    </select>
+    <select id="selectTestChr13Detection" resultType="com.joword.snv.entity.DetectionInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM detection_result
+        WHERE `Test(chr13)`=#{t.testChr13}
+    </select>
+    <select id="selectTestXDetection" resultType="com.joword.snv.entity.DetectionInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM detection_result
+        WHERE `Test(X)`=#{x.testX}
+    </select>
+    <select id="selectNote1Detection" resultType="com.joword.snv.entity.DetectionInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM detection_result
+        WHERE note1=#{n.note1}
+    </select>
+    <select id="selectNote2Detection" resultType="com.joword.snv.entity.DetectionInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM detection_result
+        WHERE note2=#{n2.note2}
+    </select>
+    <select id="selectDiseaseDetection" resultType="com.joword.snv.entity.DetectionInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM detection_result
+        WHERE disease=#{d.disease}
+    </select>
+    <select id="selectCNVDetection" resultType="com.joword.snv.entity.DetectionInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM detection_result
+        WHERE cnv=#{c.cnv}
+    </select>
+    <select id="selectAutomDetection" resultType="com.joword.snv.entity.DetectionInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM detection_result
+        WHERE autom=#{a.autom}
+    </select>
+    <select id="selectZscoreChr18Detection" resultType="com.joword.snv.entity.DetectionInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM detection_result
+        WHERE `Z-score_check(chr18)`= #{z.zScoreChr18}
+    </select>
+    <select id="selectZscoreChr13Detection" resultType="com.joword.snv.entity.DetectionInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM detection_result
+        WHERE `Z-score_check(chr13)`=#{z.zScoreChr13}
+    </select>
+    <select id="selectZscoreChr21Detection" resultType="com.joword.snv.entity.DetectionInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM detection_result
+        WHERE `Z-score_check(chr21)`=#{z.zScoreChr21}
+    </select>
+    <select id="selectStatusDetection" resultType="com.joword.snv.entity.DetectionInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM detection_result
+        WHERE `status`=#{s.status}
+    </select>
+    <select id="selectDetectionAll" resultType="com.joword.snv.entity.DetectionInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM detection_result
+    </select>
+
+</mapper>

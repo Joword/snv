@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.joword.snv.mapper.OuterDataMapper">
+    <sql id="resultInfo">slideId
+    ,pooling,Test(chr21),Test(chr18),Test(chr13),Test(X),note1,note2,disease,cnv,autom,`Z-score_check(chr21)`,`Z-score_check(chr18)`,`Z-score_check(chr13)`,statue,create_time,update_time</sql>
+
+
+    <insert id="insertResultExcel" parameterType="java.util.List">
+        INSERT INTO detection_result values
+        <foreach collection="e" item="item" separator="," close=";">
+            (#{item.slideId},#{item.pooling},#{item.testChr21},#{item.testChr18},#{item.testChr13},#{item.testX},#{item.note1},#{item.note2},#{item.disease},#{item.cnv},#{item.autom},#{item.zscoreCheckChr21},#{item.zscoreCheckChr18},#{item.zscoreCheckChr13},10,NOW(),NOW())
+        </foreach>
+    </insert>
+    <insert id="insertSampleInfoExcel" parameterType="java.util.List">
+        INSERT INTO sample_info VALUES
+        <foreach collection="s" item="item" separator="," close=";">
+            (null,#{item.slideId},#{item.pooling},#{item.sampleId},#{item.area},#{item.platform},#{item.barcode},#{item.runId},#{item.lane},#{item.date},#{item.month},#{item.chip},#{item.fetalType},#{item.enrichment},#{item.hospital},#{item.brand},#{item.gestationalAge},#{item.gestationalWeek},#{item.tag},#{item.status},#{item.createTime},#{item.updateTime})
+        </foreach>
+    </insert>
+    <insert id="insertQualityControlExcel" parameterType="java.util.List">
+        INSERT INTO quality_control_info VALUES
+        <foreach collection="q" item="item" separator="," close=";">
+            (#{item.slideId},#{item.pooling},#{item.gender},#{item.ur},#{item.gc},#{item.rawData},#{item.maprate},#{item.duprate},#{item.fetalFraction},#{item.fetalNew},#{item.chr21Fraction},#{item.chr18Fraction},#{item.chr13Fraction},#{item.chrXFraction},#{item.chrYFraction},#{item.concentrationDiff},#{item.chr21Number},#{item.chrXNumber},#{item.chrYPercent},#{item.mtop5Zscore},10,NOW(),NOW())
+        </foreach>
+    </insert>
+    <insert id="insertOtherDataExcel">
+        INSERT INTO others_info VALUES
+        <foreach collection="o" item="item" separator="," close=";">
+            (#{item.slideId},#{item.pooling},#{item.meanAdjustChr13},#{item.cvAdjustChr13},#{item.rlAdjustChr13},#{item.riskChr13},#{item.meanChr13},#{item.cvChr13},#{item.urPercentChr13},#{item.meanAdjustChr18},#{item.cvAdjustChr18},#{item.rlAdjustChr18},#{item.riskChr18},#{item.meanChr18},#{item.cvChr18},#{item.urPercentChr18},#{item.meanAdjustChr21},#{item.cvAdjustChr21},#{item.rlAdjustChr21},#{item.riskChr21},#{item.meanChr21},#{item.cvChr21},#{item.urPercentChr21},#{item.ldaZscoreChr21},#{item.ldaZscoreChr18},#{item.ldaZscoreChr13},#{item.chr21},#{item.tScoreChr21},#{item.chr18},#{item.tScoreAdjustChr18},#{item.chr13},#{item.tScoreAdjustChr13},10,NOW(),NOW())
+        </foreach>
+    </insert>
+
+
+</mapper>

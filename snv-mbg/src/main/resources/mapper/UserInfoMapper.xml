@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.joword.snv.mapper.UserInfoMapper">
+    <sql id="userInfo">id
+    , user_id, email, `password`, organization, `role`, status, create_time, update_time</sql>
+
+    <select id="selectUserInfoUid" resultType="com.joword.snv.entity.UserInfo">
+        SELECT *
+        FROM user_info
+        WHERE user_id = #{uid}
+    </select>
+
+    <insert id="insertUserInfo">
+        INSERT INTO user_info
+        VALUES (null,)
+    </insert>
+
+</mapper>

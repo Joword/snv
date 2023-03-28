@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.joword.snv.mapper.QualityControlMapper">
+    <sql id="resultInfo">slideId
+    ,pooling,ur,gc,rawData,maprate,duprate,fetalFraction,chr21Fraction,chr18Fraction,chr13Fraction,chrXFraction,chrYFraction,concentrationDiff,chr21Number,chrXNumber,chrYPercent,mtop5Zscore,`status`,create_time,update_time</sql>
+    <sql id="laneInfo">sample_info
+    .
+    slideId
+    ,sample_info.pooling,sampleId,area,lane,`date`,`month`,tag,ur,rawData,maprate,duprate,chrYFraction</sql>
+    <select id="selectSlideIdQuality" resultType="com.joword.snv.entity.QualityControlInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM quality_control_info
+        WHERE slideId=#{s}
+    </select>
+    <select id="selectPoolingQuality" resultType="com.joword.snv.entity.QualityControlInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM quality_control_info
+        WHERE pooling=#{p.pooling}
+    </select>
+    <select id="selectGenderQuality" resultType="com.joword.snv.entity.QualityControlInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM quality_control_info
+        WHERE gender=#{g.gender}
+    </select>
+    <select id="selectUniqueReadQuality" resultType="com.joword.snv.entity.QualityControlInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM quality_control_info
+        WHERE ur=#{ur.ur}
+    </select>
+    <select id="selectGCQuality" resultType="com.joword.snv.entity.QualityControlInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM quality_control_info
+        WHERE gc=#{gc.gc}
+    </select>
+    <select id="selectRawDataQuality" resultType="com.joword.snv.entity.QualityControlInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM quality_control_info
+        WHERE rawData=#{r.rawData}
+    </select>
+    <select id="selectMaprateQuality" resultType="com.joword.snv.entity.QualityControlInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM quality_control_info
+        WHERE maprate=#{m.maprate}
+    </select>
+    <select id="selectDuprateQuality" resultType="com.joword.snv.entity.QualityControlInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM quality_control_info
+        WHERE duprate=#{d.duprate}
+    </select>
+    <select id="selectFetalFraction" resultType="com.joword.snv.entity.QualityControlInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM quality_control_info
+        WHERE fetalFraction=#{f.fetalFraction}
+    </select>
+    <select id="selectFetalNew" resultType="com.joword.snv.entity.QualityControlInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM quality_control_info
+        WHERE fetalNew=#{f.fetalNew}
+    </select>
+    <select id="selectChr21Fraction" resultType="com.joword.snv.entity.QualityControlInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM quality_control_info
+        WHERE chr21Fraction=#{c.chr21Fraction}
+    </select>
+    <select id="selectChr18Fraction" resultType="com.joword.snv.entity.QualityControlInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM quality_control_info
+        WHERE chr18Fraction=#{c.chr18Fraction}
+    </select>
+    <select id="selectChr13Fraction" resultType="com.joword.snv.entity.QualityControlInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM quality_control_info
+        WHERE chr13Fraction=#{c.chr13Fraction}
+    </select>
+    <select id="selectChrXFraction" resultType="com.joword.snv.entity.QualityControlInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM quality_control_info
+        WHERE chrXFraction=#{c.chrXFraction}
+    </select>
+    <select id="selectChrYFraction" resultType="com.joword.snv.entity.QualityControlInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM quality_control_info
+        WHERE chrYFraction=#{c.chrYFraction}
+    </select>
+    <select id="selectConcentration" resultType="com.joword.snv.entity.QualityControlInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM quality_control_info
+        WHERE concentrationDiff=#{c.concentrationDiff}
+    </select>
+    <select id="selectChr21Number" resultType="com.joword.snv.entity.QualityControlInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM quality_control_info
+        WHERE chr21Number=#{c.chr21Number}
+    </select>
+    <select id="selectChrXNumber" resultType="com.joword.snv.entity.QualityControlInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM quality_control_info
+        WHERE chrXNumber=#{c.chrXNumber}
+    </select>
+    <select id="selectNiftyProData" resultType="com.joword.snv.entity.QualityControlInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM quality_control_info
+        WHERE
+    </select>
+    <select id="selectOriginalData" resultType="com.joword.snv.entity.QualityControlInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM quality_control_info
+        WHERE slideId LIKE CONCAT("%",#{sl},"%")
+    </select>
+    <select id="selectSampleData" resultType="com.joword.snv.entity.QualityControlInfo">
+        SELECT
+        <include refid="resultInfo"/>
+        FROM quality_control_info
+        WHERE slideId LIKE CONCAT('%',#{s},'%')
+    </select>
+    <select id="selectLaneData" resultType="com.joword.snv.entity.LaneInfo">
+        SELECT
+        <include refid="laneInfo"/>
+        FROM quality_control_info
+        LEFT JOIN sample_info ON sample_info.slideId = quality_control_info.slideId
+        WHERE tag = #{t} AND lane=#{l}
+    </select>
+</mapper>

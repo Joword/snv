@@ -4,11 +4,11 @@ package com.snv.common;
  * @author Joword
  * @date: 2023/3/9 18:07
  * @version: 1.0
- * @description: 返回结果接口状态码
+ * @description: return status code
  */
 public interface ResultCode {
     Integer RESULT_SUCC = 1000;
-    /*服务异常*/
+    /*service exception*/
     Integer SERVER_EXCEPTION = 1100;
     Integer SOCKET_EXCEPTION = 1200;
 

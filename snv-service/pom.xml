@@ -17,4 +17,16 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.joword.snv</groupId>
+            <artifactId>snv-mbg</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.joword.snv</groupId>
+            <artifactId>snv-common</artifactId>
+            <version>${revision}</version>
+        </dependency>
+    </dependencies>
 </project>
