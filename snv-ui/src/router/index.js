@@ -1,10 +1,10 @@
-import { createWebHistory, createWebHashHistory, createRouter } from 'vue-router';
+import { createWebHistory, createRouter } from 'vue-router';
 
 export const publicRoute = [
 	{
 		path: '/',
 		name: 'home',
-		component: () => import('~/src/views/HomeView')
+		component: () => import('~/src/view/Home')
 	}
 ];
 
