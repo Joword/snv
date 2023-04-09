@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
  * @author Joword
  * @date: 2022/11/23 14:29
  * @version: 1.0
- * @description: 样本信息工具集
+ * @description: Utils about information
  */
 public class SampleInfoUtils {
     public static List<SampleInfoDTO> reformatStructure(List<SampleInfo> samples) {
@@ -50,19 +50,6 @@ public class SampleInfoUtils {
         }
 
         return result;
-    }
-
-    /**
-     * 全因版：number > 11 & number <20;基础版：number＞40
-     *
-     * @param samples 样本数据
-     *
-     * @return List<SampleInfoDTO>
-     */
-    public static int isNIFTYVersion(String sampleId) {
-        int num = 0;
-
-        return num;
     }
 
     public static JSONObject getDataFiltering(List<SampleInfo> sampleInfos, QualityControlMapper qualityMapper) {
@@ -192,7 +179,7 @@ public class SampleInfoUtils {
     }
 
     /**
-     * 片区缩写
+     * area in abbreviation
      *
      * @return List<String>
      */
@@ -212,11 +199,9 @@ public class SampleInfoUtils {
     }
 
     /**
-     * 中英文片区转换
-     *
-     * @param area 英文片区List
-     *
-     * @return 中文片区List
+     * area in Chinese or English
+     * @param area area in English
+     * @return area in Chinese
      */
     public static List<String> areaMap(List<String> area) {
         List<String> map = new ArrayList<>();
@@ -235,5 +220,22 @@ public class SampleInfoUtils {
             map.add(String.valueOf(hashMap.get(str)));
         }
         return map;
+    }
+
+    public static List<Integer> monthMap() {
+        List<Integer> monthLists = new ArrayList<>();
+        monthLists.add(1);
+        monthLists.add(2);
+        monthLists.add(3);
+        monthLists.add(4);
+        monthLists.add(5);
+        monthLists.add(6);
+        monthLists.add(7);
+        monthLists.add(8);
+        monthLists.add(9);
+        monthLists.add(10);
+        monthLists.add(11);
+        monthLists.add(12);
+        return monthLists;
     }
 }
